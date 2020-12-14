@@ -66,9 +66,3 @@ function mosaic_post_settings_register() {
 add_action( 'init', 'mosaic_post_settings_register' );
 
 
-function mosaic_post_settings_enqueue() {
-	wp_enqueue_script( 'mosaic-post-settings' );
-	wp_enqueue_script( 'mosaic-post-title' );
-	wp_enqueue_style( 'mosaic-post-settings-editor' );
-}
-add_action( 'enqueue_block_editor_assets', 'mosaic_post_settings_enqueue' );
