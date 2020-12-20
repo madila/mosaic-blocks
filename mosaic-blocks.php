@@ -21,18 +21,20 @@ function mosaic_register_blocks()
 		return;
 	}
 
-	$block_settings = require_once "build/index.asset.php";
+	// automatically load dependencies and version
+	$asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
 
-	if(is_array($block_settings) && array_key_exists('dependencies', $block_settings)) {
-		wp_register_script(
+	if(is_array($asset_file) && array_key_exists('dependencies', $asset_file)) {
+
+		wp_enqueue_script(
 			'mosaic-blocks',
 			plugins_url('build/index.js', __FILE__),
-			$block_settings['dependencies'],
-			$block_settings['version']
+			$asset_file['dependencies'],
+			$asset_file['version']
 		);
 
 		// Register editor style src/editor.css
-		wp_register_style(
+		wp_enqueue_style(
 			'mosaic-blocks-editor-style',
 			plugins_url( 'src/editor.css', __FILE__ ),
 			array( 'wp-edit-blocks' ),
@@ -40,7 +42,7 @@ function mosaic_register_blocks()
 		);
 
 		// Register front end block style src/style.css
-		wp_register_style(
+		wp_enqueue_style(
 			'mosaic-blocks-frontend-style',
 			plugins_url( 'src/style.css', __FILE__ ),
 			array( ),
@@ -66,4 +68,4 @@ function mosaic_register_blocks()
 		) );
 	}
 }
-add_action( 'init', 'mosaic_register_blocks' );
+add_action( 'enqueue_block_assets', 'mosaic_register_blocks' );

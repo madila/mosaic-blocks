@@ -1,4 +1,4 @@
-const { withSelect, withDispatch } = wp.data;
+import { withSelect, withDispatch } from '@wordpress/data';
 
 const applyWithDispatchMeta = withDispatch( (dispatch, ownProps) => {
 	return {
@@ -9,6 +9,7 @@ const applyWithDispatchMeta = withDispatch( (dispatch, ownProps) => {
 		}
 	}
 });
+
 
 
 const applyWithSelectMeta = withSelect( (select, ownProps) => {

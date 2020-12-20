@@ -1,7 +1,7 @@
-const {ToggleControl} = wp.components;
-const {withSelect, withDispatch} = wp.data;
-const {compose} = wp.compose;
-const {__} = wp.i18n;
+import {ToggleControl} from "@wordpress/components";
+import {compose} from  '@wordpress/compose';
+import {__} from  '@wordpress/i18n';
+import { applyWithSelectMeta, applyWithDispatchMeta } from '../helpers/metaFields';
 
 const MetaBlockField = (props) => {
 	return <ToggleControl
@@ -14,26 +14,7 @@ const MetaBlockField = (props) => {
 	/>
 }
 
-const applyWithDispatch = withDispatch( (dispatch, ownProps) => {
-	return {
-		setMetaFieldValue: function (value) {
-			dispatch('core/editor').editPost(
-				{meta: {[ownProps.metaFieldName]: value}}
-			);
-		}
-	}
-});
-
-
-const applyWithSelect = withSelect( (select, ownProps) => {
-	return {
-		metaFieldValue: select('core/editor')
-			.getEditedPostAttribute('meta')
-			[ownProps.metaFieldName],
-	}
-});
-
 export default compose(
-	applyWithSelect,
-	applyWithDispatch,
+	applyWithSelectMeta,
+	applyWithDispatchMeta,
 )( MetaBlockField );

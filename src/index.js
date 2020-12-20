@@ -1,6 +1,16 @@
 // src/index.js
-const { registerPlugin } = wp.plugins;
+import { registerPlugin } from "@wordpress/plugins";
 import mosaicSettings from './settings/mosaicSettings';
+
+let DEBUG_MODE_ON = false;
+
+console.log(DEBUG_MODE_ON);
+console.log('Loading Mosaic Settings');
+
+if (!DEBUG_MODE_ON) {
+	console = console || {};
+	console.log = function(){};
+}
 
 /**
  * Every block starts by registering a new plugin type definition.
@@ -9,3 +19,4 @@ import mosaicSettings from './settings/mosaicSettings';
 registerPlugin( 'mosaic-settings', {
 	render: mosaicSettings,
 } );
+

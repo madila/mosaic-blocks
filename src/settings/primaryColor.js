@@ -1,9 +1,7 @@
-const {
-	PanelColorSettings,
-} = wp.editor;
-import {applyWithSelectMeta, applyWithDispatchMeta} from '../helpers/metaFields';
-const {compose} = wp.compose;
-const {__} = wp.i18n;
+import { PanelColorSettings } from  '@wordpress/editor';
+import { compose } from  '@wordpress/compose';
+import { __ } from  '@wordpress/i18n';
+import { applyWithSelectMeta, applyWithDispatchMeta } from '../helpers/metaFields';
 
 const ColorOptions = (props) => {
 	return (

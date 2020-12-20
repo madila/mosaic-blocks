@@ -1,6 +1,5 @@
 // settings/pluginSidebar.js
-
-const { PluginSidebar } = wp.editPost;
+import { PluginSidebar } from "@wordpress/edit-post";
 import ColorOptions from './primaryColor';
 import ToggleTitle from './toggleTitle';
 
